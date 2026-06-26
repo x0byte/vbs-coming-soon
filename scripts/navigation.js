@@ -4,7 +4,7 @@
   const navLinks = document.querySelectorAll('.primary-nav a');
   if (!header || !hero) return;
 
-  // Sections to spy on — map href → section element
+  // Build section list from nav hrefs
   const sections = [];
   navLinks.forEach(a => {
     const id = a.getAttribute('href').slice(1);
@@ -12,30 +12,28 @@
     if (el) sections.push({ el, link: a });
   });
 
-  // Toggle scrolled state
   const onScroll = () => {
     const heroBottom = hero.getBoundingClientRect().bottom;
     header.classList.toggle('is-scrolled', heroBottom <= 0);
-  };
 
-  // IntersectionObserver for active link
-  const observer = new IntersectionObserver(entries => {
+    // Find which section is most visible
     let best = null;
-    let bestRatio = 0;
-    entries.forEach(entry => {
-      if (entry.intersectionRatio > bestRatio) {
-        bestRatio = entry.intersectionRatio;
-        best = entry.target;
+    let bestDist = Infinity;
+    const vh = window.innerHeight;
+    const mid = vh / 2;
+
+    sections.forEach(({ el, link }) => {
+      const rect = el.getBoundingClientRect();
+      // Distance from viewport midpoint to section midpoint
+      const dist = Math.abs(rect.top + rect.height / 2 - mid);
+      if (dist < bestDist) {
+        bestDist = dist;
+        best = link;
       }
     });
-    navLinks.forEach(a => a.classList.remove('is-active'));
-    if (best) {
-      const match = navLinks.find(a => a.getAttribute('href') === '#' + best.id);
-      if (match) match.classList.add('is-active');
-    }
-  }, { threshold: [0, .25, .5, .75, 1] });
 
-  sections.forEach(s => observer.observe(s.el));
+    navLinks.forEach(a => a.classList.toggle('is-active', a === best));
+  };
 
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();

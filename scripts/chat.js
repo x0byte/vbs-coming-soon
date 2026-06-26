@@ -115,7 +115,7 @@ async function playConversation() {
   chatLog.setAttribute('aria-live', 'off');
 }
 
-if (chat && chatLog) {
+if (chat && chatLog && chatSimulator && typingPreview) {
   if (reduceMotion || !('IntersectionObserver' in window)) {
     playConversation();
   } else {
