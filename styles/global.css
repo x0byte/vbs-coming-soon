@@ -184,6 +184,18 @@ p {
     background: #ffffff;
 }
 
+.demo-toolbar {
+    border-radius: 8px;
+}
+
+.pos-layout {
+    border-radius: 8px;
+}
+
+.pos-cart {
+    border-radius: 8px;
+}
+
 .button--light span {
     background: transparent;
 }
