@@ -775,6 +775,8 @@
     object-fit: cover;
 }
 
+
+
 .process-list h3,
 .process-list p {
     margin-bottom: 4px;
@@ -906,4 +908,111 @@
     .hero-glow {
         animation: none;
     }
+}
+.process-icon {
+    display: grid;
+    place-items: center;
+    background: #161616;
+    position: relative;
+}
+
+.icon-glow {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(112, 239, 0, .15), transparent 70%);
+    pointer-events: none;
+    animation: icon-glow-pulse 3s ease-in-out infinite;
+}
+
+.process-icon-svg {
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+/* Step 1: Connect - node pulse */
+.icon-dot { animation: icon-dot-pulse 2s ease-in-out infinite; }
+.icon-dot--b { animation-delay: .5s; }
+.icon-dot--c { animation-delay: 1s; }
+.icon-dot--d { animation-delay: 1.5s; }
+.icon-line { stroke-dasharray: 12; stroke-dashoffset: 12; animation: icon-line-draw 2s ease-in-out infinite; }
+.icon-line--v { animation-delay: 1s; }
+.icon-pulse { animation: icon-pulse-fade 2s ease-in-out infinite; }
+
+/* Step 2: Brain + sparkles */
+.icon-brain { animation: icon-brain-glow 4s ease-in-out infinite; }
+.icon-sparkle { opacity: 0; animation: icon-sparkle-pop 2s ease-in-out infinite; }
+.icon-sparkle--2 { animation-delay: .4s; }
+.icon-sparkle--3 { animation-delay: .8s; }
+.icon-sparkle--4 { animation-delay: 1.2s; }
+
+/* Step 3: Gear + orbiting dots */
+.icon-gear { animation: icon-gear-spin 6s linear infinite; transform-origin: 12px 12px; }
+.icon-orbit-dot { animation: icon-orbit 3s linear infinite; transform-origin: 12px 12px; }
+.icon-orbit-dot--2 { animation-delay: 1s; }
+.icon-orbit-dot--3 { animation-delay: 2s; }
+
+/* Step 4: Chart bars + trend */
+.icon-bar { animation: icon-bar-rise 2s ease-out infinite alternate; }
+.icon-bar--2 { animation-delay: .15s; }
+.icon-bar--3 { animation-delay: .3s; }
+.icon-bar--4 { animation-delay: .45s; }
+.icon-trend { stroke-dasharray: 40; stroke-dashoffset: 40; animation: icon-trend-draw 3s ease-in-out infinite; }
+.icon-flash { animation: icon-flash-pulse 2s ease-in-out infinite; }
+
+@keyframes icon-glow-pulse {
+    0%, 100% { transform: scale(1); opacity: .6; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+@keyframes icon-dot-pulse {
+    0%, 100% { r: 2; opacity: .4; }
+    50% { r: 3; opacity: 1; }
+}
+
+@keyframes icon-line-draw {
+    0%, 100% { stroke-dashoffset: 12; }
+    50% { stroke-dashoffset: 0; }
+}
+
+@keyframes icon-pulse-fade {
+    0%, 100% { opacity: .3; }
+    50% { opacity: 1; }
+}
+
+@keyframes icon-brain-glow {
+    0%, 100% { opacity: .7; }
+    50% { opacity: 1; }
+}
+
+@keyframes icon-sparkle-pop {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes icon-gear-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes icon-orbit {
+    from { transform: rotate(0deg) translateX(5px); }
+    to { transform: rotate(360deg) translateX(5px); }
+}
+
+@keyframes icon-bar-rise {
+    from { transform: scaleY(.6); transform-origin: bottom; }
+    to { transform: scaleY(1); transform-origin: bottom; }
+}
+
+@keyframes icon-trend-draw {
+    0%, 100% { stroke-dashoffset: 40; }
+    50% { stroke-dashoffset: 0; }
+}
+
+@keyframes icon-flash-pulse {
+    0%, 100% { opacity: .3; transform: scale(.8); }
+    50% { opacity: 1; transform: scale(1.2); }
 }
