@@ -197,7 +197,7 @@
 
 .dashboard-frame {
     width: 100%;
-    height: clamp(220px, 33.75vw, 483px);
+    /* height: clamp(220px, 33.75vw, 483px); */
     flex: 0 0 auto;
     align-self: stretch;
     margin-top: 80px;
@@ -215,6 +215,7 @@
 .dashboard-image {
     width: 100%;
     height: auto;
+    border-radius: 8px;
     margin: 0;
 }
 
