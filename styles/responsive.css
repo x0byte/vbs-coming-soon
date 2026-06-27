@@ -23,9 +23,6 @@
     .chat-log {
         height: 520px;
     }
-    .process-list li {
-        grid-template-columns: 150px 1fr;
-    }
 }
 
 @media (max-width: 600px) {
@@ -63,7 +60,14 @@
         grid-template-columns: 1fr auto;
     }
     .process-list li {
-        grid-template-columns: 94px 1fr;
+        flex-direction: column;
+        height: auto;
+        padding: 16px;
+        gap: 14px;
+    }
+    .process-thumb {
+        width: 100%;
+        height: 160px;
     }
     .cta {
         min-height: 630px;

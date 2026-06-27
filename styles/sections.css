@@ -106,15 +106,16 @@
     display: block;
 }
 
-.hero-title-line {
+
+/* .hero-title-line {
     white-space: nowrap;
-}
+} */
 
 .hero h1 em {
     color: var(--color-accent);
     font-family: var(--font-display);
     font-style: italic;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 
@@ -220,7 +221,7 @@
 .section-heading h2 {
     font-family: "Inter Tight", sans-serif;
     font-weight: 500;
-    font-size: 48px;
+    font-size: clamp(2rem, 3.33vw, 3rem);
     line-height: 1.3;
     color: #1A191F;
 }
@@ -755,8 +756,8 @@
 }
 
 .process-thumb {
-    width: 184px;
-    height: 100px;
+    width: 182px;
+    height: 104px;
     border-radius: 8px;
     flex: 0 0 auto;
 }
@@ -871,7 +872,6 @@
 .footer-brand .brand {
     width: auto;
 }
-
 
 .footer-brand span,
 .site-footer nav {
