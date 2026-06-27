@@ -741,6 +741,15 @@
     }
 }
 
+@media (max-width: 1080px) {
+    .prototype-tab b {
+        font-size: 16px;
+    }
+    .prototype-tab small {
+        font-size: 14px;
+    }
+}
+
 @media (max-width: 700px) {
     .prototype-tabs {
         flex-direction: column;
@@ -749,6 +758,9 @@
         width: 48px;
         height: 48px;
         flex-basis: 48px;
+    }
+    .prototype-tab small {
+        font-size: .78rem;
     }
     .prototype-panel {
         min-height: 0;
@@ -792,7 +804,7 @@
         height: 24px;
     }
     .prototype-tab b {
-        font-size: .82rem;
+        font-size: 14px;
     }
     .prototype-tab small {
         font-size: .7rem;

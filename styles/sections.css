@@ -201,7 +201,9 @@
     flex: 0 0 auto;
     align-self: stretch;
     margin-top: 80px;
-    padding: 8px;
+    padding-top: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
     overflow: hidden;
     border-top: 1px solid #7CFC00;
     border-left: 1px solid #7CFC00;
@@ -214,8 +216,9 @@
 
 .dashboard-image {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
+    height: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     margin: 0;
 }
 
@@ -302,6 +305,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    
 }
 
 .tag-list li {
@@ -757,7 +761,7 @@
 }
 
 .process-thumb {
-    width: 182px;
+    width: 184px;
     height: 104px;
     border-radius: 8px;
     flex: 0 0 auto;

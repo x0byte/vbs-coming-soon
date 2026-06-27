@@ -284,6 +284,10 @@ p {
     gap: 20px;
 }
 
+.three-column-cards > * {
+    min-width: 0;
+}
+
 .centered-action {
     display: flex;
     justify-content: center;
