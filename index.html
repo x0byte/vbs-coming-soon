@@ -66,31 +66,31 @@
                 <div class="three-column-cards">
                     <article class="service-card">
                         <div class="service-image"><img src="/assets/service-intelligence.jpg" alt="Payment terminal and card representing real-time business intelligence" width="666" height="799" loading="lazy"></div>
-                        <h3>Real-Time Business Intelligence</h3>
+                        <h3>Know today’s numbers without waiting for tomorrow.</h3>
                         <p>Get instant visibility into sales, inventory, cash flow, and customer behavior across all locations.</p>
                         <ul class="tag-list">
-                            <li>Live Sales Tracking</li>
-                            <li>Cash Flow Monitoring</li>
-                            <li>Inventory Visibility</li>
+                            <li>Which products are moving</li>
+                            <li>Where cash is stuck</li>
+                            <li>Which branch needs attention</li>
                         </ul>
                     </article>
                     <article class="service-card">
                         <div class="service-image"><img src="/assets/service-automation.jpg" alt="Abstract AI brain representing intelligent automation" width="800" height="450" loading="lazy"></div>
-                        <h3>Intelligent Automation</h3>
+                        <h3>Let the system catch what people miss.</h3>
                         <p>AI agents handle reordering, approvals, reports, and routine tasks so you can focus on growth.</p>
                         <ul class="tag-list">
-                            <li>Smart Reordering</li>
-                            <li>Risk Alerts</li>
-                            <li>Auto Approvals</li>
+                            <li>Stock warnings</li>
+                            <li>Credit risk alerts</li>
+                            <li>Daily owner summaries</li>
                         </ul>
                     </article>
                     <article class="service-card">
                         <div class="service-image"><img src="/assets/service-insights.png" alt="Abstract visualization of natural language processing and AI-driven insights" width="398" height="224" loading="lazy"></div>
-                        <h3>Natural Language Insights</h3>
+                        <h3>Ask your business a question. Get a straight answer.</h3>
                         <p>Ask questions in plain English and get clear, actionable answers with supporting data.</p>
                         <ul class="tag-list">
-                            <li>Instant Summaries</li>
-                            <li>Actionable Insights</li>
+                            <li>Plain English questions</li>
+                            <li>Clear answers</li>
                         </ul>
                     </article>
                 </div>
@@ -166,6 +166,13 @@
                     </header>
                     <div class="chat-log grid-surface" id="chat-log" role="log" aria-live="polite" aria-relevant="additions">
                         <div class="chat-day"><span>Live demo</span></div>
+                        <div class="chat-bubble chat-bubble--sent" data-initial-message>
+                            <p>What should I reorder before the weekend?</p>
+                            <span class="chat-meta"><span data-chat-time>Now</span> <i class="message-ticks is-read" aria-label="Read">✓✓</i></span>
+                        </div>
+                        <div class="chat-bubble chat-bubble--received chat-bubble--typing" data-initial-typing aria-label="Volt Intelligence is typing">
+                            <span class="typing-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                        </div>
                     </div>
                     <div class="chat-simulator" aria-hidden="true">
                         <span class="simulator-add"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
@@ -266,8 +273,8 @@
                 <div class="three-column-cards">
                     <article class="service-card">
                         <div class="reward-media"><img src="/assets/earn points.png" alt="Customer earning Volt loyalty points during a purchase" width="1448" height="1086" loading="lazy"></div>
-                        <h3>Earn Points Automatically</h3>
-                        <p>Customers earn points on every purchase, visit, and referral. Fully automated through your POS and online systems.</p>
+                        <h3>Reward every visit</h3>
+                        <p>Customers earn points automatically when they buy, visit, or refer someone.</p>
                         <ul class="tag-list">
                             <li>Point accrual</li>
                             <li>Referral bonuses</li>
@@ -276,8 +283,8 @@
                     </article>
                     <article class="service-card">
                         <div class="reward-media"><img src="/assets/customer-retension.png" alt="Customers shopping as part of the Volt loyalty program" width="1448" height="1086" loading="lazy"></div>
-                        <h3>Drive Customer Retention</h3>
-                        <p>Increase repeat business, boost average order value, and gain valuable insights into customer behavior.</p>
+                        <h3>Bring back quiet customers</h3>
+                        <p>See who has not returned and send the right offer before they disappear.</p>
                         <ul class="tag-list">
                             <li>Personalized offers</li>
                             <li>Retention analytics</li>
@@ -286,8 +293,8 @@
                     </article>
                     <article class="service-card">
                         <div class="reward-media"><img src="/assets/flexible-redeem.png" alt="Customer redeeming Volt loyalty rewards from her phone" width="1448" height="1086" loading="lazy"></div>
-                        <h3>Flexible Redemption</h3>
-                        <p>Redeem points for discounts, free products, exclusive offers, or VIP experiences tailored to your business.</p>
+                        <h3>Make loyalty easy</h3>
+                        <p>No complicated cards, no messy spreadsheets, no manual tracking. Loyalty works through your POS.</p>
                         <ul class="tag-list">
                             <li>Discount redemption</li>
                             <li>Exclusive offers</li>
@@ -430,6 +437,7 @@
     <script src="/scripts/navigation.js" defer></script>
     <script src="/scripts/chat.js" defer></script>
     <script src="/scripts/prototype.js" defer></script>
+    <script src="/scripts/reveal.js" defer></script>
 </body>
 
 </html>

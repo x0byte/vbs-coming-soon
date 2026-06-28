@@ -47,9 +47,11 @@
     .dashboard-frame {
         height: clamp(210px, 47vw, 280px);
     }
-    .feature-panels,
-    .feature-grid {
+    .feature-panels {
         grid-template-columns: 1fr;
+    }
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
     .feature-panel {
         min-height: 230px;
@@ -112,5 +114,9 @@
     .chat-status-dot,
     .typing-caret {
         animation: none !important;
+    }
+    .reveal-item {
+        opacity: 1 !important;
+        transform: none !important;
     }
 }
