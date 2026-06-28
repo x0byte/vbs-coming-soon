@@ -112,7 +112,10 @@
     .chat-bubble,
     .typing-dots i,
     .chat-status-dot,
-    .typing-caret {
+    .typing-caret,
+    .ai-blob,
+    .ai-blob::before,
+    .ai-blob i {
         animation: none !important;
     }
     .reveal-item {

@@ -355,10 +355,12 @@
 }
 
 .feature-panel {
+    position: relative;
+    overflow: hidden;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: flex-start;
     padding: 24px;
     gap: 24px;
@@ -370,6 +372,11 @@
     border-radius: 12px;
 }
 
+.feature-panel > *:not(.ai-blob) {
+    position: relative;
+    z-index: 1;
+}
+
 .feature-panel--dark {
     color: #fff;
     border-color: #000;
@@ -378,6 +385,253 @@
 
 .feature-panel p {
     margin-bottom: 0;
+}
+
+.ai-blob {
+    --blob-color: #1A191F;
+    position: absolute;
+    inset: 12px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: .72;
+}
+
+.feature-panel--dark .ai-blob {
+    --blob-color: #fff;
+    opacity: .86;
+}
+
+.ai-blob::before {
+    content: none;
+}
+
+.ai-blob i {
+    position: absolute;
+    top: var(--particle-top);
+    left: var(--particle-left);
+    display: block;
+    width: var(--particle-size, 8px);
+    height: var(--particle-size, 8px);
+    border-radius: var(--particle-radius, 50%);
+    background: var(--blob-color);
+    opacity: var(--particle-opacity, .78);
+    box-shadow: 0 0 var(--particle-glow, 7px) rgba(112, 239, 0, .16);
+    transform: translate(-50%, -50%) rotate(var(--particle-rotate, 0deg));
+    animation: ai-debris-float var(--particle-speed, 8s) ease-in-out infinite alternate;
+    animation-delay: var(--particle-delay, 0s);
+}
+
+.ai-blob i:nth-child(1) {
+    --particle-top: 12%;
+    --particle-left: 10%;
+    --particle-drift-x: 28px;
+    --particle-drift-y: 18px;
+    --particle-size: 10px;
+    --particle-speed: 7.2s;
+    --particle-radius: 3px;
+    --particle-rotate: 18deg;
+}
+
+.ai-blob i:nth-child(2) {
+    --particle-top: 8%;
+    --particle-left: 34%;
+    --particle-drift-x: -18px;
+    --particle-drift-y: 32px;
+    --particle-size: 6px;
+    --particle-speed: 8.2s;
+    --particle-delay: -.5s;
+}
+
+.ai-blob i:nth-child(3) {
+    --particle-top: 10%;
+    --particle-left: 74%;
+    --particle-drift-x: -34px;
+    --particle-drift-y: 24px;
+    --particle-size: 8px;
+    --particle-speed: 7.7s;
+    --particle-radius: 2px;
+    --particle-rotate: -12deg;
+    --particle-delay: -1.1s;
+}
+
+.ai-blob i:nth-child(4) {
+    --particle-top: 28%;
+    --particle-left: 88%;
+    --particle-drift-x: -36px;
+    --particle-drift-y: -20px;
+    --particle-size: 5px;
+    --particle-speed: 9.1s;
+    --particle-delay: -.8s;
+}
+
+.ai-blob i:nth-child(5) {
+    --particle-top: 34%;
+    --particle-left: 14%;
+    --particle-drift-x: 34px;
+    --particle-drift-y: -24px;
+    --particle-size: 9px;
+    --particle-speed: 7.4s;
+    --particle-radius: 1px;
+    --particle-rotate: 32deg;
+    --particle-delay: -1.4s;
+}
+
+.ai-blob i:nth-child(6) {
+    --particle-top: 38%;
+    --particle-left: 42%;
+    --particle-drift-x: 26px;
+    --particle-drift-y: -28px;
+    --particle-size: 6px;
+    --particle-speed: 8.8s;
+    --particle-delay: -.2s;
+}
+
+.ai-blob i:nth-child(7) {
+    --particle-top: 44%;
+    --particle-left: 66%;
+    --particle-drift-x: -26px;
+    --particle-drift-y: 30px;
+    --particle-size: 12px;
+    --particle-speed: 7.9s;
+    --particle-opacity: .5;
+    --particle-radius: 2px;
+    --particle-rotate: -26deg;
+}
+
+.ai-blob i:nth-child(8) {
+    --particle-top: 68%;
+    --particle-left: 8%;
+    --particle-drift-x: 26px;
+    --particle-drift-y: 18px;
+    --particle-size: 5px;
+    --particle-speed: 6s;
+    --particle-delay: -1.8s;
+    --particle-opacity: .42;
+}
+
+.ai-blob i:nth-child(9) {
+    --particle-top: 76%;
+    --particle-left: 32%;
+    --particle-drift-x: -22px;
+    --particle-drift-y: -32px;
+    --particle-size: 7px;
+    --particle-speed: 5.8s;
+    --particle-delay: -.9s;
+    --particle-opacity: .5;
+    --particle-radius: 2px;
+    --particle-rotate: 22deg;
+}
+
+.ai-blob i:nth-child(10) {
+    --particle-top: 78%;
+    --particle-left: 58%;
+    --particle-drift-x: 36px;
+    --particle-drift-y: -22px;
+    --particle-size: 6px;
+    --particle-speed: 6.4s;
+    --particle-delay: -2.2s;
+    --particle-opacity: .46;
+}
+
+.ai-blob i:nth-child(11) {
+    --particle-top: 70%;
+    --particle-left: 86%;
+    --particle-drift-x: -34px;
+    --particle-drift-y: -30px;
+    --particle-size: 5px;
+    --particle-speed: 5.5s;
+    --particle-delay: -1.2s;
+    --particle-opacity: .44;
+}
+
+.ai-blob i:nth-child(12) {
+    --particle-top: 22%;
+    --particle-left: 54%;
+    --particle-drift-x: 24px;
+    --particle-drift-y: 36px;
+    --particle-size: 4px;
+    --particle-speed: 6.8s;
+    --particle-delay: -2.8s;
+    --particle-opacity: .38;
+}
+
+.ai-blob i:nth-child(13) {
+    --particle-top: 20%;
+    --particle-left: 24%;
+    --particle-drift-x: 20px;
+    --particle-drift-y: -34px;
+    --particle-size: 4px;
+    --particle-speed: 5.9s;
+    --particle-delay: -3.1s;
+    --particle-opacity: .42;
+}
+
+.ai-blob i:nth-child(14) {
+    --particle-top: 56%;
+    --particle-left: 48%;
+    --particle-drift-x: -28px;
+    --particle-drift-y: 20px;
+    --particle-size: 7px;
+    --particle-speed: 4.9s;
+    --particle-delay: -1.7s;
+    --particle-opacity: .52;
+    --particle-radius: 2px;
+    --particle-rotate: -18deg;
+}
+
+.ai-blob i:nth-child(15) {
+    --particle-top: 18%;
+    --particle-left: 82%;
+    --particle-drift-x: 22px;
+    --particle-drift-y: 34px;
+    --particle-size: 4px;
+    --particle-speed: 6.2s;
+    --particle-delay: -.4s;
+    --particle-opacity: .4;
+}
+
+.ai-blob i:nth-child(16) {
+    --particle-top: 88%;
+    --particle-left: 18%;
+    --particle-drift-x: 30px;
+    --particle-drift-y: -20px;
+    --particle-size: 5px;
+    --particle-speed: 5.4s;
+    --particle-delay: -2.4s;
+    --particle-opacity: .46;
+}
+
+.ai-blob i:nth-child(17) {
+    --particle-top: 50%;
+    --particle-left: 88%;
+    --particle-drift-x: -24px;
+    --particle-drift-y: 32px;
+    --particle-size: 8px;
+    --particle-speed: 4.6s;
+    --particle-delay: -3.4s;
+    --particle-opacity: .5;
+    --particle-radius: 1px;
+    --particle-rotate: 38deg;
+}
+
+.ai-blob i:nth-child(18) {
+    --particle-top: 52%;
+    --particle-left: 8%;
+    --particle-drift-x: 34px;
+    --particle-drift-y: 26px;
+    --particle-size: 6px;
+    --particle-speed: 6.6s;
+    --particle-delay: -2s;
+    --particle-opacity: .44;
+}
+
+@keyframes ai-debris-float {
+    from {
+        transform: translate(-50%, -50%) rotate(var(--particle-rotate, 0deg)) scale(.82);
+    }
+    to {
+        transform: translate(calc(-50% + var(--particle-drift-x)), calc(-50% + var(--particle-drift-y))) rotate(calc(var(--particle-rotate, 0deg) + 80deg)) scale(1.08);
+    }
 }
 
 .node-icon {
