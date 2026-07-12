@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/styles/sections.css">
     <link rel="stylesheet" href="/styles/prototype.css">
     <link rel="stylesheet" href="/styles/responsive.css">
+    <link rel="stylesheet" href="/styles/careers.css">
 </head>
 
 <body>
@@ -32,9 +33,13 @@
                 <a href="#services">Services</a>
                 <a href="#features">Features</a>
                 <a href="#rewards">Volt Rewards</a>
-            </nav>
+                <a href="/careers.html">Careers</a> </nav>
 
             <a class="button button--light" href="mailto:info@vbs.lk">Contact Us <span aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 10C20 4.49 15.51 0 10 0C4.49 0 0 4.49 0 10C0 15.51 4.49 20 10 20C15.51 20 20 15.51 20 10ZM7.29 13.29L10.58 10L7.29 6.71L8.7 5.3L13.41 10.01L8.7 14.72L7.29 13.31V13.29Z" fill="#19191F"/></svg></span></a>
+
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
@@ -440,6 +445,25 @@
     <script src="/scripts/chat.js" defer></script>
     <script src="/scripts/prototype.js" defer></script>
     <script src="/scripts/reveal.js" defer></script>
+    <script>
+        (function() {
+            var toggle = document.querySelector('.nav-toggle');
+            var nav = document.querySelector('.primary-nav');
+            if (toggle && nav) {
+                toggle.addEventListener('click', function() {
+                    var expanded = this.getAttribute('aria-expanded') === 'true' ? false : true;
+                    this.setAttribute('aria-expanded', expanded);
+                    nav.classList.toggle('is-open', expanded);
+                });
+                document.addEventListener('click', function(e) {
+                    if (!toggle.contains(e.target) && !nav.contains(e.target)) {
+                        toggle.setAttribute('aria-expanded', 'false');
+                        nav.classList.remove('is-open');
+                    }
+                });
+            }
+        })();
+    </script>
 </body>
 
 </html>
