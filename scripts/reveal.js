@@ -38,11 +38,15 @@ if (revealItems.length) {
         revealElement(entry.target);
         revealObserver.unobserve(entry.target);
       });
-    }, {
-      rootMargin: '0px 0px -12% 0px',
-      threshold: .12
-    });
+    }, { threshold: .05 });
 
     revealItems.forEach((element) => revealObserver.observe(element));
+
+    // Fallback: reveal all after 4s in case observer never fires
+    setTimeout(function() {
+      revealItems.forEach(function(el) {
+        if (!el.classList.contains('is-revealed')) revealElement(el);
+      });
+    }, 4000);
   }
 }
