@@ -72,6 +72,63 @@
     filter: invert(1);
 }
 
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .06);
+    cursor: pointer;
+    z-index: 110;
+    transition: border-color .25s ease, background .25s ease;
+}
+
+.nav-toggle:hover {
+    border-color: rgba(255, 255, 255, .3);
+    background: rgba(255, 255, 255, .1);
+}
+
+.nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    border-radius: 3px;
+    background: #fff;
+    transition: transform .3s cubic-bezier(.22, 1, .36, 1), opacity .3s ease;
+}
+
+.site-header.is-scrolled .nav-toggle {
+    border-color: rgba(0, 0, 0, .12);
+    background: rgba(0, 0, 0, .04);
+}
+
+.site-header.is-scrolled .nav-toggle:hover {
+    border-color: rgba(0, 0, 0, .25);
+    background: rgba(0, 0, 0, .08);
+}
+
+.site-header.is-scrolled .nav-toggle span {
+    background: #000;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
 .hero {
     position: relative;
     background: url("/bg.png") 50% 50% / cover no-repeat;
