@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Join Volt Business Solutions — careers and opportunities.">
     <meta name="theme-color" content="#151517">
-    <title>Careers — Volt Business Solutions</title>
+    <title>Apply — Volt Business Solutions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -18,7 +18,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon-dark.png" media="(prefers-color-scheme: dark)">
     <link rel="stylesheet" href="/styles/global.css">
     <link rel="stylesheet" href="/styles/sections.css">
-    <link rel="stylesheet" href="/styles/careers.css">
+    <link rel="stylesheet" href="/styles/apply.css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
@@ -31,7 +32,7 @@
                 <a href="/#services">Services</a>
                 <a href="/#features">Features</a>
                 <a href="/#rewards">Volt Rewards</a>
-                <a href="/careers.html" class="is-active">Careers</a>
+                <a href="/apply" class="is-active">Careers</a>
             </nav>
 
             <a class="button button--dark" href="mailto:info@vbs.lk">Contact Us <span aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 10C20 4.49 15.51 0 10 0C4.49 0 0 4.49 0 10C0 15.51 4.49 20 10 20C15.51 20 20 15.51 20 10ZM7.29 13.29L10.58 10L7.29 6.71L8.7 5.3L13.41 10.01L8.7 14.72L7.29 13.31V13.29Z" fill="#FFFFFF"/></svg></span></a>
@@ -87,8 +88,15 @@
                     </div>
                 </div>
 
-                <form class="careers-form" id="careers-form" novalidate>
+                <form class="careers-form" id="apply-form" novalidate>
                     <h2 class="form-title">Apply now</h2>
+
+                    <div class="form-group">
+                        <label for="vacancy">Role <span aria-hidden="true">*</span></label>
+                        <select id="vacancy" name="vacancy" required>
+                            <option value="" disabled selected>Loading open roles…</option>
+                        </select>
+                    </div>
 
                     <div class="form-row">
                         <div class="form-group">
@@ -134,6 +142,10 @@
                             <span class="upload-filename"></span>
                         </div>
                     </div>
+
+                    <div class="cf-turnstile" data-sitekey="__TURNSTILE_SITE_KEY__"></div>
+
+                    <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
 
                     <button class="button button--light form-submit" type="submit">Submit application <span aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 10C20 4.49 15.51 0 10 0C4.49 0 0 4.49 0 10C0 15.51 4.49 20 10 20C15.51 20 20 15.51 20 10ZM7.29 13.29L10.58 10L7.29 6.71L8.7 5.3L13.41 10.01L8.7 14.72L7.29 13.31V13.29Z" fill="#1A191F"/></svg></span></button>
                 </form>
@@ -183,9 +195,14 @@
     </script>
     <script>
     (function() {
-        var form = document.getElementById('careers-form');
+        var API_BASE = 'https://inside.vbs.lk';
+
+        var form = document.getElementById('apply-form');
         var cvInput = document.getElementById('cv');
         var filenameDisplay = document.querySelector('.upload-filename');
+        var vacancySelect = document.getElementById('vacancy');
+        var statusEl = document.getElementById('form-status');
+        var submitButton = form.querySelector('.form-submit');
 
         cvInput.addEventListener('change', function() {
             if (this.files && this.files[0]) {
@@ -197,9 +214,49 @@
             }
         });
 
+        function setStatus(message, isError) {
+            statusEl.textContent = message;
+            statusEl.classList.toggle('is-error', !!isError);
+            statusEl.classList.toggle('is-success', !isError && !!message);
+        }
+
+        // Populate open vacancies. Falls back to a generic "General Application"
+        // option if the list is empty or the request fails, so the form still works.
+        fetch(API_BASE + '/api/v1/careers/vacancies')
+            .then(function(res) { return res.ok ? res.json() : []; })
+            .then(function(vacancies) {
+                vacancySelect.innerHTML = '';
+                if (!vacancies || vacancies.length === 0) {
+                    var opt = document.createElement('option');
+                    opt.value = '';
+                    opt.textContent = 'No open roles right now';
+                    opt.disabled = true;
+                    opt.selected = true;
+                    vacancySelect.appendChild(opt);
+                    return;
+                }
+                var placeholder = document.createElement('option');
+                placeholder.value = '';
+                placeholder.disabled = true;
+                placeholder.selected = true;
+                placeholder.textContent = 'Select a role';
+                vacancySelect.appendChild(placeholder);
+                vacancies.forEach(function(v) {
+                    var opt = document.createElement('option');
+                    opt.value = v.id;
+                    opt.textContent = v.title;
+                    vacancySelect.appendChild(opt);
+                });
+            })
+            .catch(function() {
+                vacancySelect.innerHTML = '<option value="" disabled selected>Couldn\'t load roles \u2014 refresh to try again</option>';
+            });
+
         form.addEventListener('submit', function(e) {
             e.preventDefault();
+            setStatus('', false);
 
+            var vacancyId = vacancySelect.value;
             var firstName = document.getElementById('first-name').value.trim();
             var lastName = document.getElementById('last-name').value.trim();
             var gender = document.getElementById('gender').value;
@@ -207,28 +264,70 @@
             var email = document.getElementById('email').value.trim();
             var phone = document.getElementById('phone').value.trim();
             var cvFile = cvInput.files && cvInput.files[0];
+            var turnstileToken = (typeof turnstile !== 'undefined')
+                ? turnstile.getResponse()
+                : (document.querySelector('[name="cf-turnstile-response"]') || {}).value;
 
-            if (!firstName || !lastName || !gender || !age || !email || !phone || !cvFile) {
-                alert('Please fill in all required fields and upload your CV.');
+            if (!vacancyId || !firstName || !lastName || !gender || !age || !email || !phone || !cvFile) {
+                setStatus('Please fill in all required fields and upload your CV.', true);
                 return;
             }
 
-            var subject = encodeURIComponent('Job Application \u2014 ' + firstName + ' ' + lastName);
-            var body = encodeURIComponent(
-                'Full Name: ' + firstName + ' ' + lastName + '\n' +
-                'Gender: ' + gender + '\n' +
-                'Age: ' + age + '\n' +
-                'Email: ' + email + '\n' +
-                'Phone: ' + phone + '\n\n' +
-                'CV: ' + cvFile.name + ' (' + (cvFile.size / 1024).toFixed(1) + ' KB)\n\n' +
-                'Please attach the CV file before sending.'
-            );
+            if (!turnstileToken) {
+                setStatus('Please complete the verification challenge.', true);
+                return;
+            }
 
-            window.location.href = 'mailto:info@vbs.lk?subject=' + subject + '&body=' + body;
+            var formData = new FormData();
+            formData.append('VacancyId', vacancyId);
+            formData.append('FirstName', firstName);
+            formData.append('LastName', lastName);
+            formData.append('Gender', gender);
+            formData.append('Age', age);
+            formData.append('Email', email);
+            formData.append('Phone', phone);
+            formData.append('Resume', cvFile);
+            formData.append('TurnstileToken', turnstileToken);
 
-            form.reset();
-            filenameDisplay.textContent = '';
-            filenameDisplay.classList.remove('has-file');
+            submitButton.disabled = true;
+            setStatus('Submitting\u2026', false);
+
+            fetch(API_BASE + '/api/v1/careers/applications', {
+                method: 'POST',
+                body: formData
+            })
+                .then(function(res) {
+                    if (res.ok) {
+                        return res.json().then(function() { return true; });
+                    }
+                    return res.json().catch(function() { return {}; }).then(function(body) {
+                        throw new Error(body && body.error ? body.error : 'submission_failed');
+                    });
+                })
+                .then(function() {
+                    setStatus('Application submitted \u2014 thank you! We\'ll be in touch if there\'s a match.', false);
+                    form.reset();
+                    filenameDisplay.textContent = '';
+                    filenameDisplay.classList.remove('has-file');
+                    if (typeof turnstile !== 'undefined') {
+                        turnstile.reset();
+                    }
+                })
+                .catch(function(err) {
+                    var messages = {
+                        captcha_failed: 'Verification failed \u2014 please try the challenge again.',
+                        vacancy_not_found_or_closed: 'That role is no longer available. Please refresh and try again.',
+                        invalid_resume_size: 'Your CV must be under 10 MB.',
+                        invalid_resume_type: 'Your CV must be a PDF, DOC or DOCX file.'
+                    };
+                    setStatus(messages[err.message] || 'Something went wrong submitting your application. Please try again.', true);
+                    if (typeof turnstile !== 'undefined') {
+                        turnstile.reset();
+                    }
+                })
+                .finally(function() {
+                    submitButton.disabled = false;
+                });
         });
     })();
     </script>
