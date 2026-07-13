@@ -32,13 +32,24 @@ jobs:
       - name: Check deployment script
         run: bash -n deploy/deploy.sh
 
+      - name: Verify Turnstile placeholder exists
+        run: |
+          grep -q "__TURNSTILE_SITE_KEY__" apply.html
+
   deploy-production:
     name: Deploy production
     needs: validate
     runs-on: ubuntu-latest
     environment: production
 
+    env:
+      TURNSTILE_SITE_KEY: ${{ secrets.TURNSTILE_SITE_KEY }}
+
     steps:
+      - name: Validate deployment configuration
+        run: |
+          test -n "$TURNSTILE_SITE_KEY"
+
       - name: Deploy over SSH
         uses: appleboy/ssh-action@v1.2.5
         with:
@@ -46,10 +57,31 @@ jobs:
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           command_timeout: 10m
+          envs: TURNSTILE_SITE_KEY
           script: |
-            sudo -u vbsweb bash -lc '
+            sudo -u vbsweb env TURNSTILE_SITE_KEY="$TURNSTILE_SITE_KEY" bash -lc '
+              set -euo pipefail
+
               cd /opt/vbs-lk/src
               ./deploy/deploy.sh
+
+              test -n "$TURNSTILE_SITE_KEY"
+
+              sed -i \
+                "s|__TURNSTILE_SITE_KEY__|$TURNSTILE_SITE_KEY|g" \
+                /var/www/vbs.lk/apply.html
+
+              if grep -q "__TURNSTILE_SITE_KEY__" /var/www/vbs.lk/apply.html; then
+                echo "Turnstile site-key injection failed."
+                exit 1
+              fi
+
+              if ! grep -q "data-sitekey=" /var/www/vbs.lk/apply.html; then
+                echo "Turnstile widget configuration is missing."
+                exit 1
+              fi
+
+              echo "Landing page deployed successfully."
             '
 
       - name: Verify production
@@ -62,4 +94,14 @@ jobs:
           curl --fail --silent --show-error \
             --retry 5 \
             --retry-delay 5 \
-            https://vbs.lk/apply > /dev/null
+            https://vbs.lk/apply > apply-production.html
+
+          if grep -q "__TURNSTILE_SITE_KEY__" apply-production.html; then
+            echo "Production still contains the Turnstile placeholder."
+            exit 1
+          fi
+
+          if ! grep -q 'class="cf-turnstile"' apply-production.html; then
+            echo "Production Turnstile widget is missing."
+            exit 1
+          fi
