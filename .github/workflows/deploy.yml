@@ -1,0 +1,65 @@
+name: Deploy landing page
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vbs-landing-production
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate static site
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify required files
+        run: |
+          test -f index.html
+          test -f apply.html
+          test -f 404.html
+          test -x deploy/deploy.sh
+
+      - name: Check deployment script
+        run: bash -n deploy/deploy.sh
+
+  deploy-production:
+    name: Deploy production
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.2.5
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          command_timeout: 10m
+          script: |
+            sudo -u vbsweb bash -lc '
+              cd /opt/vbs-lk/src
+              ./deploy/deploy.sh
+            '
+
+      - name: Verify production
+        run: |
+          curl --fail --silent --show-error \
+            --retry 5 \
+            --retry-delay 5 \
+            https://vbs.lk/ > /dev/null
+
+          curl --fail --silent --show-error \
+            --retry 5 \
+            --retry-delay 5 \
+            https://vbs.lk/apply > /dev/null
