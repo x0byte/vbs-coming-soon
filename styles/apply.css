@@ -306,6 +306,21 @@
   display: block;
 }
 
+/* ── Status ── */
+
+.form-status {
+  font-size: .85rem;
+  min-height: 1.2em;
+}
+
+.form-status.is-error {
+  color: #ff6b6b;
+}
+
+.form-status.is-success {
+  color: var(--color-accent);
+}
+
 /* ── Submit ── */
 
 .form-submit {
