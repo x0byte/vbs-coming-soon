@@ -10,6 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Hero background is a CSS background-image, so the preload scanner can't find it
+         until sections.css is parsed. Preloading it here shaves that lookup off the LCP path. -->
+    <link rel="preload" as="image" href="/assets/bg-mobile.webp" fetchpriority="high" media="(max-width: 900px)">
+    <link rel="preload" as="image" href="/assets/bg-desktop.webp" fetchpriority="high" media="(min-width: 901px)">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
@@ -56,7 +60,7 @@
                     <a class="button button--outline-light" href="#rewards">Visit Volt Rewards <span aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 10C20 4.49 15.51 0 10 0C4.49 0 0 4.49 0 10C0 15.51 4.49 20 10 20C15.51 20 20 15.51 20 10ZM7.29 13.29L10.58 10L7.29 6.71L8.7 5.3L13.41 10.01L8.7 14.72L7.29 13.31V13.29Z" fill="white"/></svg></span></a>
                 </div>
                 <div class="dashboard-frame">
-                    <img class="dashboard-image" src="/assets/dashboard-image.png" alt="Volt business intelligence dashboard showing revenue, cash position, receivables, and business-unit performance" width="1914" height="955">
+                    <img class="dashboard-image" src="/assets/dashboard-image.webp" alt="Volt business intelligence dashboard showing revenue, cash position, receivables, and business-unit performance" width="1800" height="899" fetchpriority="high">
                 </div>
             </div>
         </section>
@@ -69,7 +73,7 @@
                 </header>
                 <div class="three-column-cards">
                     <article class="service-card">
-                        <div class="service-image"><img src="/assets/service-intelligence.jpg" alt="Payment terminal and card representing real-time business intelligence" width="666" height="799" loading="lazy"></div>
+                        <div class="service-image"><img src="/assets/service-intelligence.webp" alt="Payment terminal and card representing real-time business intelligence" width="700" height="840" loading="lazy"></div>
                         <h3>Know today’s numbers without waiting for tomorrow.</h3>
                         <p>Get instant visibility into sales, inventory, cash flow, and customer behavior across all locations.</p>
                         <ul class="tag-list">
@@ -79,7 +83,7 @@
                         </ul>
                     </article>
                     <article class="service-card">
-                        <div class="service-image"><img src="/assets/service-automation.jpg" alt="Abstract AI brain representing intelligent automation" width="800" height="450" loading="lazy"></div>
+                        <div class="service-image"><img src="/assets/service-automation.webp" alt="Abstract AI brain representing intelligent automation" width="900" height="507" loading="lazy"></div>
                         <h3>Let the system catch what people miss.</h3>
                         <p>AI agents handle reordering, approvals, reports, and routine tasks so you can focus on growth.</p>
                         <ul class="tag-list">
@@ -89,7 +93,7 @@
                         </ul>
                     </article>
                     <article class="service-card">
-                        <div class="service-image"><img src="/assets/service-insights.png" alt="Abstract visualization of natural language processing and AI-driven insights" width="398" height="224" loading="lazy"></div>
+                        <div class="service-image"><img src="/assets/service-insights.webp" alt="Abstract visualization of natural language processing and AI-driven insights" width="900" height="507" loading="lazy"></div>
                         <h3>Ask your business a question. Get a straight answer.</h3>
                         <p>Ask questions in plain English and get clear, actionable answers with supporting data.</p>
                         <ul class="tag-list">
@@ -278,7 +282,7 @@
                 </header>
                 <div class="three-column-cards">
                     <article class="service-card">
-                        <div class="reward-media"><img src="/assets/earn points.png" alt="Customer earning Volt loyalty points during a purchase" width="1448" height="1086" loading="lazy"></div>
+                        <div class="reward-media"><img src="/assets/earn-points.webp" alt="Customer earning Volt loyalty points during a purchase" width="900" height="675" loading="lazy"></div>
                         <h3>Reward every visit</h3>
                         <p>Customers earn points automatically when they buy, visit, or refer someone.</p>
                         <ul class="tag-list">
@@ -288,7 +292,7 @@
                         </ul>
                     </article>
                     <article class="service-card">
-                        <div class="reward-media"><img src="/assets/customer-retension.png" alt="Customers shopping as part of the Volt loyalty program" width="1448" height="1086" loading="lazy"></div>
+                        <div class="reward-media"><img src="/assets/customer-retention.webp" alt="Customers shopping as part of the Volt loyalty program" width="900" height="675" loading="lazy"></div>
                         <h3>Bring back quiet customers</h3>
                         <p>See who has not returned and send the right offer before they disappear.</p>
                         <ul class="tag-list">
@@ -298,7 +302,7 @@
                         </ul>
                     </article>
                     <article class="service-card">
-                        <div class="reward-media"><img src="/assets/flexible-redeem.png" alt="Customer redeeming Volt loyalty rewards from her phone" width="1448" height="1086" loading="lazy"></div>
+                        <div class="reward-media"><img src="/assets/flexible-redeem.webp" alt="Customer redeeming Volt loyalty rewards from her phone" width="900" height="675" loading="lazy"></div>
                         <h3>Make loyalty easy</h3>
                         <p>No complicated cards, no messy spreadsheets, no manual tracking. Loyalty works through your POS.</p>
                         <ul class="tag-list">
