@@ -131,11 +131,17 @@
 
 .hero {
     position: relative;
-    background: url("/bg.png") 50% 50% / cover no-repeat;
+    background: url("/assets/bg-mobile.webp") 50% 50% / cover no-repeat;
     background-color: #151517;
     min-height: clamp(760px, 77.78vw, 1120px);
     overflow: hidden;
     color: #fff;
+}
+
+@media (min-width: 901px) {
+    .hero {
+        background-image: url("/assets/bg-desktop.webp");
+    }
 }
 
 .hero-content {
@@ -1104,8 +1110,14 @@
     place-items: center;
     overflow: hidden;
     color: #161616;
-    background: url("footer.png") / cover no-repeat;
+    background: url("/assets/footer-mobile.webp") 50% 50% / cover no-repeat;
     background-color: #161616;
+}
+
+@media (min-width: 901px) {
+    .cta {
+        background-image: url("/assets/footer-desktop.webp");
+    }
 }
 
 .cta-glow--tl {
