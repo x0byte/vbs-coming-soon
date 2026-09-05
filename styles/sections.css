@@ -1339,3 +1339,19 @@
     0%, 100% { opacity: .3; transform: scale(.8); }
     50% { opacity: 1; transform: scale(1.2); }
 }
+
+@media (max-width: 900px) {
+    .hero-glow,
+    .cta-glow,
+    .ambient-glow {
+        display: none !important;
+        animation: none !important;
+        filter: none !important;
+    }
+
+    .primary-nav,
+    .site-header.is-scrolled {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+    }
+}
