@@ -1,0 +1,20 @@
+# Volt Business Solutions
+
+> Volt Business Solutions builds custom business systems with an intelligence layer for business operations, reporting, and automation.
+
+## Company
+
+- [Homepage](https://vbs.lk/): Overview of Volt Business Solutions, its services, capabilities, and product demos.
+- [Careers](https://vbs.lk/apply): Career opportunities and application information.
+- [Contact](mailto:info@vbs.lk): Contact Volt Business Solutions.
+
+## Services and capabilities
+
+- [Services](https://vbs.lk/#services): Business intelligence, workflow automation, and natural-language business insights.
+- [Core capabilities](https://vbs.lk/#features): Custom software, POS and retail systems, inventory management, HR and payroll, BI dashboards, AI agents, integrations, and secure infrastructure.
+- [Volt Rewards](https://vbs.lk/#rewards): Customer loyalty and rewards program.
+- [Interactive prototype](https://vbs.lk/#prototype): Interactive point-of-sale and business-intelligence dashboard demos.
+
+## Site resources
+
+- [Sitemap](https://vbs.lk/sitemap.xml): Public site URLs for crawlers.
