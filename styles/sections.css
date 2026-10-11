@@ -330,6 +330,16 @@
     object-fit: contain;
 }
 
+@media (hover: hover) and (pointer: fine) {
+    .client-logo img {
+        filter: grayscale(1);
+        transition: filter .25s ease;
+    }
+    .client-logo:hover img {
+        filter: grayscale(0);
+    }
+}
+
 .client-logo:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 30px rgba(26, 25, 31, .08);
@@ -1536,7 +1546,6 @@
     }
 }
 
-
 @media (max-width: 900px) {
     .hero-glow,
     .cta-glow,
@@ -1545,7 +1554,6 @@
         animation: none !important;
         filter: none !important;
     }
-
     .primary-nav,
     .site-header.is-scrolled {
         -webkit-backdrop-filter: none !important;
@@ -1553,3 +1561,32 @@
     }
 }
 
+@media (max-width: 600px) {
+    .clients {
+        padding-block: 72px;
+    }
+    .client-logos {
+        display: flex;
+        gap: 12px;
+        margin-inline: calc(var(--page-pad) * -1);
+        overflow-x: auto;
+        padding: 4px var(--page-pad) 14px;
+        scroll-padding-inline: var(--page-pad);
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+    .client-logos::-webkit-scrollbar {
+        display: none;
+    }
+    .client-logo {
+        min-height: 112px;
+        flex: 0 0 clamp(220px, 78%, 280px);
+        scroll-snap-align: start;
+    }
+    .client-logos:focus-visible {
+        outline: 2px solid var(--color-ink);
+        outline-offset: 4px;
+    }
+}
