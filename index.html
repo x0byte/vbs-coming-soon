@@ -10,6 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Hero background is a CSS background-image, so the preload scanner can't find it
+         until sections.css is parsed. Preloading it here shaves that lookup off the LCP path. -->
+    <link rel="preload" as="image" href="/assets/bg-mobile.webp" fetchpriority="high" media="(max-width: 900px)">
+    <link rel="preload" as="image" href="/assets/bg-desktop.webp" fetchpriority="high" media="(min-width: 901px)">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
@@ -32,9 +36,13 @@
                 <a href="#services">Services</a>
                 <a href="#features">Features</a>
                 <a href="#rewards">Volt Rewards</a>
-            </nav>
+                <a href="/apply">Careers</a> </nav>
 
             <a class="button button--light" href="mailto:info@vbs.lk">Contact Us <span aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 10C20 4.49 15.51 0 10 0C4.49 0 0 4.49 0 10C0 15.51 4.49 20 10 20C15.51 20 20 15.51 20 10ZM7.29 13.29L10.58 10L7.29 6.71L8.7 5.3L13.41 10.01L8.7 14.72L7.29 13.31V13.29Z" fill="#19191F"/></svg></span></a>
+
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
@@ -52,7 +60,7 @@
                     <a class="button button--outline-light" href="#rewards">Visit Volt Rewards <span aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 10C20 4.49 15.51 0 10 0C4.49 0 0 4.49 0 10C0 15.51 4.49 20 10 20C15.51 20 20 15.51 20 10ZM7.29 13.29L10.58 10L7.29 6.71L8.7 5.3L13.41 10.01L8.7 14.72L7.29 13.31V13.29Z" fill="white"/></svg></span></a>
                 </div>
                 <div class="dashboard-frame">
-                    <img class="dashboard-image" src="/assets/dashboard-image.png" alt="Volt business intelligence dashboard showing revenue, cash position, receivables, and business-unit performance" width="1914" height="955">
+                    <img class="dashboard-image" src="/assets/dashboard-image.webp" alt="Volt business intelligence dashboard showing revenue, cash position, receivables, and business-unit performance" width="1800" height="899" fetchpriority="high">
                 </div>
             </div>
         </section>
@@ -65,32 +73,32 @@
                 </header>
                 <div class="three-column-cards">
                     <article class="service-card">
-                        <div class="service-image"><img src="/assets/service-intelligence.jpg" alt="Payment terminal and card representing real-time business intelligence" width="666" height="799" loading="lazy"></div>
-                        <h3>Real-Time Business Intelligence</h3>
+                        <div class="service-image"><img src="/assets/service-intelligence.webp" alt="Payment terminal and card representing real-time business intelligence" width="700" height="840" loading="lazy"></div>
+                        <h3>Know today’s numbers without waiting for tomorrow.</h3>
                         <p>Get instant visibility into sales, inventory, cash flow, and customer behavior across all locations.</p>
                         <ul class="tag-list">
-                            <li>Live Sales Tracking</li>
-                            <li>Cash Flow Monitoring</li>
-                            <li>Inventory Visibility</li>
+                            <li>Which products are moving</li>
+                            <li>Where cash is stuck</li>
+                            <li>Which branch needs attention</li>
                         </ul>
                     </article>
                     <article class="service-card">
-                        <div class="service-image"><img src="/assets/service-automation.jpg" alt="Abstract AI brain representing intelligent automation" width="800" height="450" loading="lazy"></div>
-                        <h3>Intelligent Automation</h3>
+                        <div class="service-image"><img src="/assets/service-automation.webp" alt="Abstract AI brain representing intelligent automation" width="900" height="507" loading="lazy"></div>
+                        <h3>Let the system catch what people miss.</h3>
                         <p>AI agents handle reordering, approvals, reports, and routine tasks so you can focus on growth.</p>
                         <ul class="tag-list">
-                            <li>Smart Reordering</li>
-                            <li>Risk Alerts</li>
-                            <li>Auto Approvals</li>
+                            <li>Stock warnings</li>
+                            <li>Credit risk alerts</li>
+                            <li>Daily owner summaries</li>
                         </ul>
                     </article>
                     <article class="service-card">
-                        <div class="service-image"><img src="/assets/service-insights.png" alt="Abstract visualization of natural language processing and AI-driven insights" width="398" height="224" loading="lazy"></div>
-                        <h3>Natural Language Insights</h3>
+                        <div class="service-image"><img src="/assets/service-insights.webp" alt="Abstract visualization of natural language processing and AI-driven insights" width="900" height="507" loading="lazy"></div>
+                        <h3>Ask your business a question. Get a straight answer.</h3>
                         <p>Ask questions in plain English and get clear, actionable answers with supporting data.</p>
                         <ul class="tag-list">
-                            <li>Instant Summaries</li>
-                            <li>Actionable Insights</li>
+                            <li>Plain English questions</li>
+                            <li>Clear answers</li>
                         </ul>
                     </article>
                 </div>
@@ -136,13 +144,15 @@
                             every module works together seamlessly with real-time intelligence.</p><a class="button button--dark" href="mailto:info@vbs.lk">Contact Us <span aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 10C20 4.49 15.51 0 10 0C4.49 0 0 4.49 0 10C0 15.51 4.49 20 10 20C15.51 20 20 15.51 20 10ZM7.29 13.29L10.58 10L7.29 6.71L8.7 5.3L13.41 10.01L8.7 14.72L7.29 13.31V13.29Z" /></svg></span></a></div>
                 </div>
                 <div class="feature-panels">
-                    <article class="feature-panel feature-panel--dark"><span class="node-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg></span>
+                    <article class="feature-panel feature-panel--dark">
+                        <span class="ai-blob" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
                         <div>
                             <h3>Modern Operations Interface</h3>
                             <p>Clean, intuitive dashboard designed for daily use with full customization to match your workflows.</p>
                         </div>
                     </article>
-                    <article class="feature-panel"><span class="node-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg></span>
+                    <article class="feature-panel">
+                        <span class="ai-blob" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
                         <div>
                             <h3>AI Intelligence Panel</h3>
                             <p>Conversational AI that turns your data and interactions into smart recommendations and automated actions.</p>
@@ -192,6 +202,13 @@
                     </header>
                     <div class="chat-log grid-surface" id="chat-log" role="log" aria-live="polite" aria-relevant="additions">
                         <div class="chat-day"><span>Live demo</span></div>
+                        <div class="chat-bubble chat-bubble--sent" data-initial-message>
+                            <p>What should I reorder before the weekend?</p>
+                            <span class="chat-meta"><span data-chat-time>Now</span> <i class="message-ticks is-read" aria-label="Read">✓✓</i></span>
+                        </div>
+                        <div class="chat-bubble chat-bubble--received chat-bubble--typing" data-initial-typing aria-label="Volt Intelligence is typing">
+                            <span class="typing-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                        </div>
                     </div>
                     <div class="chat-simulator" aria-hidden="true">
                         <span class="simulator-add"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
@@ -212,7 +229,7 @@
                 <ol class="process-list">
                     <li>
                         <div class="process-thumb process-icon">
-                    <svg class="process-icon-svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="process-icon-svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <circle class="icon-dot icon-dot--a" cx="6" cy="12" r="2.5" fill="var(--color-accent)" stroke="none"/>
                         <circle class="icon-dot icon-dot--b" cx="18" cy="12" r="2.5" fill="var(--color-accent)" stroke="none"/>
                         <circle class="icon-dot icon-dot--c" cx="12" cy="6" r="2" fill="var(--color-accent)" stroke="none"/>
@@ -221,8 +238,8 @@
                         <line class="icon-line icon-line--v" x1="12" y1="6" x2="12" y2="18"/>
                         <path class="icon-pulse" d="M2 12h2M20 12h2M12 2v2M12 20v2" stroke="var(--color-accent)" stroke-width="1.5"/>
                     </svg>
-                    <div class="icon-glow"></div>
-                </div>
+                            <div class="icon-glow"></div>
+                        </div>
                         <div>
                             <h3>Connect Your Systems</h3>
                             <p>Integrate your existing POS, inventory, and tools effortlessly.</p>
@@ -230,7 +247,7 @@
                     </li>
                     <li>
                         <div class="process-thumb process-icon">
-                    <svg class="process-icon-svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="process-icon-svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <path class="icon-brain" d="M12 4a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.5V14h-4v-2.5a4 4 0 0 1-2-3.5 4 4 0 0 1 4-4z"/>
                         <path class="icon-brain" d="M8 14h8v2H8z"/>
                         <path class="icon-brain" d="M9 18h6v1.5a1.5 1.5 0 0 1-3 0"/>
@@ -239,8 +256,8 @@
                         <line class="icon-sparkle icon-sparkle--3" x1="5" y1="6" x2="5" y2="6.01" stroke-width="2"/>
                         <line class="icon-sparkle icon-sparkle--4" x1="4" y1="9" x2="4" y2="9.01" stroke-width="2"/>
                     </svg>
-                    <div class="icon-glow"></div>
-                </div>
+                            <div class="icon-glow"></div>
+                        </div>
                         <div>
                             <h3>Build Intelligence</h3>
                             <p>Add AI agents tailored to your specific business rules.</p>
@@ -248,15 +265,15 @@
                     </li>
                     <li>
                         <div class="process-thumb process-icon">
-                    <svg class="process-icon-svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="process-icon-svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="3"/>
                         <path class="icon-gear" d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
                         <circle class="icon-orbit-dot" cx="16" cy="8" r="1.5" fill="var(--color-accent)" stroke="none"/>
                         <circle class="icon-orbit-dot icon-orbit-dot--2" cx="17.5" cy="14" r="1.2" fill="var(--color-accent)" stroke="none"/>
                         <circle class="icon-orbit-dot icon-orbit-dot--3" cx="8" cy="17" r="1" fill="var(--color-accent)" stroke="none"/>
                     </svg>
-                    <div class="icon-glow"></div>
-                </div>
+                            <div class="icon-glow"></div>
+                        </div>
                         <div>
                             <h3>Automate Operations</h3>
                             <p>Let the system manage reorders, alerts, and workflows.</p>
@@ -264,7 +281,7 @@
                     </li>
                     <li>
                         <div class="process-thumb process-icon">
-                    <svg class="process-icon-svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="process-icon-svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <polyline class="icon-trend" points="2 20 7 14 12 16 17 10 22 12"/>
                         <rect class="icon-bar icon-bar--1" x="3" y="16" width="3" height="6" rx=".5" fill="var(--color-accent)" stroke="none" opacity=".3"/>
                         <rect class="icon-bar icon-bar--2" x="8.5" y="12" width="3" height="10" rx=".5" fill="var(--color-accent)" stroke="none" opacity=".5"/>
@@ -272,8 +289,8 @@
                         <rect class="icon-bar icon-bar--4" x="19.5" y="3" width="3" height="19" rx=".5" fill="var(--color-accent)" stroke="none"/>
                         <circle class="icon-flash" cx="22" cy="4" r="1.5" fill="var(--color-accent)" stroke="none"/>
                     </svg>
-                    <div class="icon-glow"></div>
-                </div>
+                            <div class="icon-glow"></div>
+                        </div>
                         <div>
                             <h3>Drive Better Decisions</h3>
                             <p>Gain real-time insights and grow with confidence.</p>
@@ -291,9 +308,9 @@
                 </header>
                 <div class="three-column-cards">
                     <article class="service-card">
-                        <div class="reward-media"><img src="/assets/earn points.png" alt="Customer earning Volt loyalty points during a purchase" width="1448" height="1086" loading="lazy"></div>
-                        <h3>Earn Points Automatically</h3>
-                        <p>Customers earn points on every purchase, visit, and referral. Fully automated through your POS and online systems.</p>
+                        <div class="reward-media"><img src="/assets/earn-points.webp" alt="Customer earning Volt loyalty points during a purchase" width="900" height="675" loading="lazy"></div>
+                        <h3>Reward every visit</h3>
+                        <p>Customers earn points automatically when they buy, visit, or refer someone.</p>
                         <ul class="tag-list">
                             <li>Point accrual</li>
                             <li>Referral bonuses</li>
@@ -301,9 +318,9 @@
                         </ul>
                     </article>
                     <article class="service-card">
-                        <div class="reward-media"><img src="/assets/customer-retension.png" alt="Customers shopping as part of the Volt loyalty program" width="1448" height="1086" loading="lazy"></div>
-                        <h3>Drive Customer Retention</h3>
-                        <p>Increase repeat business, boost average order value, and gain valuable insights into customer behavior.</p>
+                        <div class="reward-media"><img src="/assets/customer-retention.webp" alt="Customers shopping as part of the Volt loyalty program" width="900" height="675" loading="lazy"></div>
+                        <h3>Bring back quiet customers</h3>
+                        <p>See who has not returned and send the right offer before they disappear.</p>
                         <ul class="tag-list">
                             <li>Personalized offers</li>
                             <li>Retention analytics</li>
@@ -311,9 +328,9 @@
                         </ul>
                     </article>
                     <article class="service-card">
-                        <div class="reward-media"><img src="/assets/flexible-redeem.png" alt="Customer redeeming Volt loyalty rewards from her phone" width="1448" height="1086" loading="lazy"></div>
-                        <h3>Flexible Redemption</h3>
-                        <p>Redeem points for discounts, free products, exclusive offers, or VIP experiences tailored to your business.</p>
+                        <div class="reward-media"><img src="/assets/flexible-redeem.webp" alt="Customer redeeming Volt loyalty rewards from her phone" width="900" height="675" loading="lazy"></div>
+                        <h3>Make loyalty easy</h3>
+                        <p>No complicated cards, no messy spreadsheets, no manual tracking. Loyalty works through your POS.</p>
                         <ul class="tag-list">
                             <li>Discount redemption</li>
                             <li>Exclusive offers</li>
@@ -456,6 +473,26 @@
     <script src="/scripts/navigation.js" defer></script>
     <script src="/scripts/chat.js" defer></script>
     <script src="/scripts/prototype.js" defer></script>
+    <script src="/scripts/reveal.js" defer></script>
+    <script>
+        (function() {
+            var toggle = document.querySelector('.nav-toggle');
+            var nav = document.querySelector('.primary-nav');
+            if (toggle && nav) {
+                toggle.addEventListener('click', function() {
+                    var expanded = this.getAttribute('aria-expanded') === 'true' ? false : true;
+                    this.setAttribute('aria-expanded', expanded);
+                    nav.classList.toggle('is-open', expanded);
+                });
+                document.addEventListener('click', function(e) {
+                    if (!toggle.contains(e.target) && !nav.contains(e.target)) {
+                        toggle.setAttribute('aria-expanded', 'false');
+                        nav.classList.remove('is-open');
+                    }
+                });
+            }
+        })();
+    </script>
 </body>
 
 </html>
